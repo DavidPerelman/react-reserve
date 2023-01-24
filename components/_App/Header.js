@@ -1,38 +1,33 @@
-import { Menu, Container, Image, Icon } from 'semantic-ui-react'
-import Link from 'next/link'
-import Router, { useRouter } from 'next/router'
-import NProgress from 'nprogress'
+import Link from 'next/link';
+import React from 'react';
+import { Container, Menu, Icon } from 'semantic-ui-react';
+import logo from '../../static/logo.svg';
+import styles from './Header.module.css';
+import Image from 'next/image';
 
-Router.onRouteChangeStart = function() {
-  NProgress.start()
-}
-Router.onRouteChangeComplete = function() {
-  NProgress.done()
-}
-Router.onRouteChangeError = function() {
-  NProgress.done()
-}
-
-function Header() {
-  const router = useRouter()
-  const user = false
-
-  function isActive(route) {
-    return route === router.pathname
-  }
+const Header = () => {
+  const user = false;
 
   return (
-    <Menu fluid id='menu' inverted>
+    <Menu fluid id={styles.menu} inverted>
       <Container text>
         <Link href='/'>
-          <Menu.Item header active={isActive('/')}>
-            <Image size='mini' src='/static/logo.svg' style={{ marginRight: '1em' }} />
+          <Menu.Item header>
+            <Image
+              width={35}
+              height={29}
+              src={logo}
+              alt='fd'
+              style={{
+                marginRight: '1rem',
+              }}
+            />
             ReactReserve
           </Menu.Item>
         </Link>
 
         <Link href='/cart'>
-          <Menu.Item header active={isActive('/cart')}>
+          <Menu.Item header>
             <Icon name='cart' size='large' />
             Cart
           </Menu.Item>
@@ -40,7 +35,7 @@ function Header() {
 
         {user && (
           <Link href='/create'>
-            <Menu.Item header active={isActive('/create')}>
+            <Menu.Item header>
               <Icon name='add square' size='large' />
               Create
             </Menu.Item>
@@ -50,7 +45,7 @@ function Header() {
         {user ? (
           <>
             <Link href='/account'>
-              <Menu.Item header active={isActive('/account')}>
+              <Menu.Item header>
                 <Icon name='user' size='large' />
                 Account
               </Menu.Item>
@@ -64,14 +59,14 @@ function Header() {
         ) : (
           <>
             <Link href='/login'>
-              <Menu.Item header active={isActive('/login')}>
+              <Menu.Item header>
                 <Icon name='sign in' size='large' />
                 Login
               </Menu.Item>
             </Link>
 
             <Link href='/signup'>
-              <Menu.Item header active={isActive('/signup')}>
+              <Menu.Item header>
                 <Icon name='signup' size='large' />
                 Signup
               </Menu.Item>
@@ -80,7 +75,7 @@ function Header() {
         )}
       </Container>
     </Menu>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

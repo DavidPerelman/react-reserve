@@ -8,10 +8,6 @@ body {
   background: var(--bodyBg);
 }
 
-#menu {
-  background: var(--menuBg);
-}
-
 /* Overrides default styled accordion styles (too much bottom padding) */
 .ui.styled.accordion .content {
   margin: 0;
