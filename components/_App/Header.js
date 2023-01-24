@@ -4,7 +4,20 @@ import { Container, Menu, Icon } from 'semantic-ui-react';
 import logo from '../../static/logo.svg';
 import styles from './Header.module.css';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import nProgress from 'nprogress';
+
+Router.onRouteChangeStart = () => {
+  nProgress.start();
+};
+
+Router.onRouteChangeComplete = () => {
+  nProgress.done();
+};
+
+Router.onRouteChangeError = function () {
+  NProgress.done();
+};
 
 const Header = () => {
   const router = useRouter();
@@ -18,7 +31,7 @@ const Header = () => {
     <Menu fluid id={styles.menu} inverted>
       <Container text>
         <Link href='/'>
-          <Menu.Item header active={isActive('/')}>
+          <Menu.Item header active={isActive('/')} style={{ height: '100%' }}>
             <Image
               width={35}
               height={29}

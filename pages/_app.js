@@ -1,7 +1,7 @@
 import App from 'next/app';
 import Layout from '../components/_App/Layout';
-import '../static/styles.css';
-import '../static/nprogress.css';
+import '/static/styles.css';
+import '/static/nprogress.css';
 
 // class MyApp extends App {
 //   render() {
